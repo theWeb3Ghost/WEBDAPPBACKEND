@@ -14,9 +14,11 @@ export const googleAuth = async (req, res) => {
     // You can create or fetch user data here
 
     res.status(200).json({
-      success: true,
-      user: decodedToken
-    });
+  uid: decodedToken.uid,
+  displayName: decodedToken.name || decodedToken.email || "User",
+  balance: 0   // starting balance
+});
+    
   } catch (error) {
     console.error("Google Auth Error:", error);
     res.status(401).json({ success: false, error: "Invalid token" });
