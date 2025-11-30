@@ -5,6 +5,7 @@ import { relayMetaTransfer } from "../relayer/forwarderHelper.js";
 
 // -------------------- Claim Tokens --------------------
 export const claim = async (req, res) => {
+  console.log("Claim endpoint hit by UID:", req.user?.uid);
   try {
     const uid = req.user.uid;
     const user = await User.findOne({ firebaseId: uid });
