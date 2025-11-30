@@ -23,7 +23,7 @@ const token = new ethers.Contract(
   process.env.TOKEN_ADDRESS,
   [
     "function transfer(address to, uint amount) returns (bool)",
-    "function balanceOf(address) view returns (uint256)"
+    "function balanceOf(address) view returns (uint256)",
     "function decimals() view returns (uint8)"
   ],
   wallet
