@@ -21,6 +21,8 @@ export const registerUsername = async (req, res) => {
     if (!user) {
       const { address, privateKey } = createWallet();
 
+        console.log("Registering user:", { uid, username, address });
+
       user = await User.create({
         uid,
         username,
