@@ -4,7 +4,7 @@ import { token } from "../utils/index.js";
 import { relayMetaTransfer } from "../relayer/forwarderHelper.js";
 
 // -------------------- Claim Tokens --------------------
-export const claimTokens = async (req, res) => {
+export const claim = async (req, res) => {
   try {
     const uid = req.user.uid;
     const user = await User.findOne({ firebaseId: uid });
@@ -38,7 +38,7 @@ export const claimTokens = async (req, res) => {
 };
 
 // -------------------- Send Tokens via Relayer --------------------
-export const sendTokens = async (req, res) => {
+export const send = async (req, res) => {
   try {
     const { toUsername, amount } = req.body;
 
