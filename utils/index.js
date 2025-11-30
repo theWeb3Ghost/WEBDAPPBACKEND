@@ -24,6 +24,7 @@ const token = new ethers.Contract(
   [
     "function transfer(address to, uint amount) returns (bool)",
     "function balanceOf(address) view returns (uint256)"
+    "function decimals() view returns (uint8)"
   ],
   wallet
 );
