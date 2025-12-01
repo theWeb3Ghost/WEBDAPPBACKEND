@@ -36,8 +36,8 @@ export const claim = async (req, res) => {
 
     user.claimed = true;
     await user.save();
+res.json({ claimedTokens: amountTokens, message: `Claimed ${amountTokens} tokens successfully!` });
 
-    res.send(`Claimed ${amountTokens} tokens successfully!`);
   } catch (err) {
     console.error(err);
     res.status(500).send("Something went wrong");
