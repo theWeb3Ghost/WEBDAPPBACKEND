@@ -26,7 +26,7 @@ export const claim = async (req, res) => {
     console.log("amountTokens:", amountTokens);
 
     if (user.claimed) return res.status(400).send("Already claimed");
-    if (currentHour < 11 || currentHour >= 15) return res.status(400).send("Claim is only allowed between 11 AM and 3 PM");
+    if (currentHour < 0 || currentHour >= 24) return res.status(400).send("Claim is only allowed between 11 AM and 3 PM");
     if (amountTokens <= 0) return res.status(400).send("Claim amount is 0, too late to claim");
 
     const amount = ethers.parseUnits(amountTokens.toString(), 18);
