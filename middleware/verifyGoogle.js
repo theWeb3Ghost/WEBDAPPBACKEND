@@ -1,6 +1,6 @@
 import admin from "../config/firebase.js";
 
-export default async function verifyGoogle(req, res, next) {
+export default async function verify(req, res, next) {
   try {
     const header = req.headers.authorization;
 
