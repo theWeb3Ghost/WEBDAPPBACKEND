@@ -8,7 +8,7 @@ export const claim = async (req, res) => {
   console.log("Claim endpoint hit by UID:", req.user?.uid);
   try {
     const uid = req.user.uid;
-    const user = await User.findOne({ firebaseId: uid });
+    const user = await User.findOne({ uid });
     if (!user) return res.status(404).send("User not found");
     if (user.claimed) return res.status(400).send("Already claimed");
 
