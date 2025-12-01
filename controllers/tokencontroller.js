@@ -9,18 +9,24 @@ export const claim = async (req, res) => {
   try {
     const uid = req.user.uid;
     const user = await User.findOne({ uid });
-    if (!user) return res.status(404).send("User not found");
-    if (user.claimed) return res.status(400).send("Already claimed");
+
+    if (!user) {
+      console.log("User not found for UID:", uid);
+      return res.status(404).send("User not found");
+    }
+
+    console.log("user.claimed:", user.claimed);
 
     const now = new Date();
     const currentHour = now.getHours();
-
-    if (currentHour < 11 || currentHour >= 15) {
-      return res.status(400).send("Claim is only allowed between 11 AM and 3 PM");
-    }
+    console.log("currentHour:", currentHour);
 
     const hoursPassed = currentHour - 11;
     const amountTokens = 100 - hoursPassed * 20;
+    console.log("amountTokens:", amountTokens);
+
+    if (user.claimed) return res.status(400).send("Already claimed");
+    if (currentHour < 11 || currentHour >= 15) return res.status(400).send("Claim is only allowed between 11 AM and 3 PM");
     if (amountTokens <= 0) return res.status(400).send("Claim amount is 0, too late to claim");
 
     const amount = ethers.parseUnits(amountTokens.toString(), 18);
